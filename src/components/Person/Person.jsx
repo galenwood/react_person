@@ -3,6 +3,18 @@
 export const Person = ({ person }) => {
   const { name, age, sex, isMarried, partnerName } = person;
 
+  let statusPartner;
+
+  if (isMarried) {
+    statusPartner =
+      sex === 'm'
+        ? `${partnerName} is my wife`
+        : `${partnerName} is my husband`;
+  } else {
+    // eslint-disable-next-line no-unused-vars
+    statusPartner = 'I am not married';
+  }
+
   return (
     <div className="App">
       <section className="Person">
@@ -10,13 +22,7 @@ export const Person = ({ person }) => {
 
         {age && <p className="Person__age">I am {age}</p>}
 
-        <p className="Person__partner">
-          {isMarried
-            ? sex === 'm'
-              ? `${partnerName} is my wife`
-              : `${partnerName} is my husband`
-            : 'I am not married'}
-        </p>
+        <p className="Person__partner">{statusPartner}</p>
       </section>
     </div>
   );
